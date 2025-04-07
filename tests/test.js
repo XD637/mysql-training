@@ -9,6 +9,3 @@ const eventHandler = () => {
 event.on('scream', eventHandler);
 
 event.emit('scream');
-
-let firstName = "Dylan"; // inferred to type string
-firstName = 33;
