@@ -20,6 +20,7 @@ const schema = buildSchema(
   }`
 );
 
+
 const resolvers = {
     cities: async () => {
         try{
