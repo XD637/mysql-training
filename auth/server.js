@@ -25,6 +25,7 @@ let users = [{
 console.log(users[0].pass);
 
 
+
 async function hashedPass(password) {
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log('Hashed Password :>> ', hashedPassword);

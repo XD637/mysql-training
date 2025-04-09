@@ -31,7 +31,9 @@ app.listen(4000, () => {
 
 app.get('/city', async (req,res) => {
     try {
-        const results = await Query("SELECT * FROM city LIMIT 5");
+        const limit = parseInt(req.query.limit) || 10;
+        const offset = parseInt(req.query.offset) || 0;
+        const results = await Query("SELECT * FROM city LIMIT ? OFFSET ?", [limit, offset]);
         res.status(200).json(results);
     } catch(err) {
         res.status(500).json({error: "Failed to fetch city"});
