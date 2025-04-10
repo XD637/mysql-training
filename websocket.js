@@ -18,16 +18,20 @@ wss.on("connection", (ws, req) => {
     ws.send(`Welcome to the group chat ${username} !`);
 
     ws.on("message", (message) => {
-        // if (message === "typing"){
-        //     for (const client of clients){
-        //         if(client !== ws && client.readyState === WebSocket.OPEN){
-        //             client.send(`${username} is typing...`);
-        //         };
-        //     };
-        // };
+
+        ws.on("message", (message) => {
+            if (message === "typing") {
+                for (const [client] of clients) {
+                    if (client !== ws && client.readyState === WebSocket.OPEN) {
+                        client.send(`${username} is typing...`);
+                    }
+                }
+            }
+        });
+        
         console.log(`Message received from ${username}: ${message}`);
 
-        for (const client of clients) {
+        for (const [client] of clients) {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
                 client.send(`${username} says: ${message}`);
             }
