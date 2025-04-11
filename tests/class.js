@@ -75,3 +75,57 @@ const animals = [ new Cat(), new Dog(), new Animal()];
 
 animals.forEach(a => a.speak());
 
+
+// class test
+
+class Book {
+    #isAvailable;
+    constructor(title, author, ISBN){
+        this.title = title;
+        this.author = author;
+        this.ISBN = ISBN;
+    }
+
+    lendBook(){
+        if (!this.#isAvailable){
+            console.log(`${this.title} is already lent`);
+            return false;
+        } else {
+            this.#isAvailable = false;
+            console.log(`${this.title}  has been lent`);
+            return true;
+        }
+    }
+    returnBook(){
+        this.#isAvailable = true;
+        console.log(`${this.title} has been returned`);
+    }
+    isBookAvailable(){
+        return this.#isAvailable;
+    }
+}
+
+
+
+class Members {
+    constructor(name,memberId){
+        this.name = name;
+        this.memberId = memberId;
+    }
+
+}
+
+class Libarary {
+    constructor() {
+        this.books = [];
+        this.members = [];
+    }
+    addBook(book){
+        this.books.push(book);
+        console.log(`Book ${book.title} added to the library`);
+    }
+    addMember(member){
+        this.members.push(member);
+        console.log(`Member ${member.name} added to the library`);
+    }
+}
